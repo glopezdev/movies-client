@@ -9,6 +9,11 @@ app.controller('MainCtrl', ['$scope', function ($scope) {
 
   $scope.gridOptions = {};
 
+  $scope.gridOptions.onRegisterApi = function(gridApi){
+    $scope.gridApi = gridApi;
+    $scope.gridApi.grid.registerRowsProcessor( $scope.singleFilter, 200 );
+  }
+
   //you can override the default assignment if you wish
   //$scope.gridOptions.appScopeProvider = someOtherReference;
 
@@ -43,6 +48,20 @@ app.controller('MainCtrl', ['$scope', function ($scope) {
        gender: "Sci-Fi"
      }
    ];
+
+  $scope.$watch('filterValue', function() {
+    $scope.gridApi.grid.refresh();
+  });
+
+  $scope.singleFilter = function( renderableRows ){
+    var matcher = new RegExp($scope.filterValue);
+    renderableRows.forEach( function( row ) {
+      if ( !row.entity["name"].match(matcher) ){
+        row.visible = false;
+      }
+    });
+    return renderableRows;
+  };
 
 /*
   $http.get('/data/100.json')
