@@ -1,52 +1,70 @@
-var app = angular.module('movieClientApp', ['ngTouch', 'ui.grid']);
-app.controller('ListController', ['$scope', function ($scope) {
+(function() {
+  console.log("list.controller");
+  var app = angular.module('movieClientAppList', ['ngTouch', 'ui.grid','movieClientService']);
+  app.controller('ListController', ['$scope','Movies', function ($scope, Movies) {
 
-  $scope.someProp = 'Click!';
-  $scope.showMe = function(){
-    alert($scope.someProp);
-  };
+    $scope.showMovie = showMovie;
+    $scope.editMovie = editMovie;
+    $scope.deleteMovie = deleteMovie;
+    $scope.gridOptions = {};
+    $scope.gridOptions.data = [];
+    $scope.gridOptions.onRegisterApi = onRegisterApi;
+    $scope.gridOptions.columnDefs = [
+      {name: 'id'},
+      {name: 'name'},
+      {name: 'details', cellTemplate: '<button class="btn primary" ng-click="grid.appScope.showMovie()">View Me</button>'},
+      {name: 'edit', cellTemplate: '<button class="btn primary" ng-click="grid.appScope.editMovie()">Edit Me</button>'},
+      {name: 'delete', cellTemplate: '<button class="btn primary" ng-click="grid.appScope.deleteMovie(row)">Delete Me</button>'}
+    ];
+    $scope.singleFilter = filter;
 
-  $scope.gridOptions = {};
+    return init();
 
-  //you can override the default assignment if you wish
-  //$scope.gridOptions.appScopeProvider = someOtherReference;
+    function init () {
+      Movies.query(function(results){
+        console.log("Query",arguments);
+        results.forEach(function(result){
+          result.id = result._id; //ugly hack, should be dealt with on the grid
+          $scope.gridOptions.data.push(result);
+        })
+      });
 
-  $scope.gridOptions.columnDefs = [
-    { name: 'name' },
-    { name: 'gender'},
-    { name: 'year'},
-    { name: 'btn1',cellTemplate:'<button class="btn primary" ng-click="grid.appScope.showMe()">Click Me</button>' },
-    { name: 'btn2',cellTemplate:'<button class="btn primary" ng-click="grid.appScope.showMe()">Click Me</button>' },
-    { name: 'btn3',cellTemplate:'<button class="btn primary" ng-click="grid.appScope.showMe()">Click Me</button>' }
-  ];
-
-  $scope.gridOptions.data = [
-    {
-      name: "Pulp Fiction",
-      year: "1994",
-      gender: "action"
-    },
-    {
-      name: "The Godfather",
-      year: "1972",
-      gender: "action"
-    },
-    {
-      name: "Fight Club",
-      year: "1999",
-      gender: "action"
-    },
-    {
-      name: "Star Wars: Episode V - The Empire Strikes Back",
-      year: "1980",
-      gender: "Sci-Fi"
+      $scope.$watch('filterValue', refreshGrid);
     }
-  ];
+    function refreshGrid () {
+      $scope.gridApi.grid.refresh();
+    }
 
-  /*
-   $http.get('/data/100.json')
-   .success(function(data) {
-   $scope.gridOptions.data = data;
-   });
-   */
-}]);
+    function onRegisterApi(gridApi) {
+      $scope.gridApi = gridApi;
+      $scope.gridApi.grid.registerRowsProcessor($scope.singleFilter, 200);
+    }
+
+    function filter(renderableRows) {
+      var matcher = new RegExp($scope.filterValue);
+      renderableRows.forEach(function (row) {
+        if (!row.entity["name"].match(matcher)) {
+          row.visible = false;
+        }
+      });
+      return renderableRows;
+    }
+
+    function deleteMovie (row) {
+      console.log("delete Movie ",row);
+      row.entity.$delete(null, function(){
+        var index = $scope.gridOptions.data.indexOf(row.entity);
+        $scope.gridOptions.data.splice(index, 1);
+      });
+    }
+
+    function showMovie() {
+      alert('showMovie');
+    }
+
+    function editMovie() {
+      alert('editMovie!');
+    }
+
+  }]);
+})();

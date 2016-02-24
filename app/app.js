@@ -1,22 +1,17 @@
-var app = angular.module('movieClientApp', ['ui.router']);
+var app = angular.module('movieClientApp', ['ui.router','movieClientAppList']);
 app.config(["$stateProvider","$urlRouterProvider",
   function($stateProvider, $urlRouterProvider) {
-    console.log("state provider!!!");
-    alert("state provider!!!");
-  //
-  // For any unmatched url, redirect to /state1
+
   $urlRouterProvider.otherwise("/list");
-  //
-  // Now set up the states
+
   $stateProvider
     .state('list', {
       url: "/list",
       templateUrl: "list/list.html",
-  //    controller: "ListController"
+  //    controller: "ListController" this gives loads the controller 2 times and gives an error
     })
-    .state('state2', {
-      url: "/state2",
-      templateUrl: "state2.html"
+    .state('edit', {
+      url: "/edit",
+      templateUrl: "edit/edit.html"
     })
 }]);
-console.log("appp.js");

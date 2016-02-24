@@ -4,20 +4,21 @@
     <meta charset="UTF-8">
     <title>ASDF Movies</title>
 
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-touch/angular-touch.js"></script>
+    <script src="../bower_components/angular-resource/angular-resource.js"></script>
+    <script src="../node_modules/angular-ui-grid/ui-grid.js"></script>
+    <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="movie.service.js"></script>
+    <script src="list/list.controller.js"></script>
+    <script src="app.js"></script>
     <link rel="stylesheet" href="app.css">
     <link rel="stylesheet" href="../bower_components/html5-boilerplate/dist/css/normalize.css">
     <link rel="stylesheet" href="../bower_components/html5-boilerplate/dist/css/main.css">
 </head>
 <body ng-app="movieClientApp">
 
-    <script src="../bower_components/angular/angular.js"></script>
-    <script src="../bower_components/angular-touch/angular-touch.js"></script>
-    <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="../node_modules/angular-ui-grid/ui-grid.js"></script>
-    <script src="app.js"></script>
-    <script src="list/list.controller.js"></script>
-
-    <div ui-view></div>
+<div ui-view></div>
 
 </body>
 </html>
