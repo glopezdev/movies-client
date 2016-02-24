@@ -1,6 +1,6 @@
 (function(){
   var app = angular.module('movieClientAppDetails', ['movieClientService']);
-  app.controller('DetailsController', ['$scope','$stateParams', 'Movies', function($scope, $stateParams, Movies) {
+  app.controller('DetailsController', ['$scope', '$stateParams', 'Movies', function($scope, $stateParams, Movies) {
     console.log("details controller",$stateParams);
     $scope.movie = {
       id: $stateParams.id

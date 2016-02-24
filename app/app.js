@@ -1,6 +1,6 @@
 (function() {
     var app = angular.module('movieClientApp',
-        ['ui.router', 'movieClientAppList','movieClientAppEdit', 'movieClientAppDetails']);
+        ['ui.router', 'movieClientAppList', 'movieClientAppEdit', 'movieClientAppDetails']);
     app.config(["$stateProvider", "$urlRouterProvider",
         function($stateProvider, $urlRouterProvider) {
 

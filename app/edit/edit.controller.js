@@ -1,6 +1,6 @@
 (function(){
   var app = angular.module('movieClientAppEdit', ['movieClientService']);
-  app.controller('EditController', ['$scope','$stateParams', 'Movies', function($scope, $stateParams, Movies) {
+  app.controller('EditController', ['$scope', '$stateParams', 'Movies', function($scope, $stateParams, Movies) {
     console.log("edit controller",$stateParams);
     $scope.movie = {
       id: $stateParams.id

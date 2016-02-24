@@ -2,8 +2,6 @@
     var app = angular.module('movieClientAppList', ['ngTouch', 'ui.grid', 'movieClientService']);
     app.controller('ListController', ['$scope', 'Movies', function($scope, Movies) {
 
-        $scope.showMovie = showMovie;
-        $scope.editMovie = editMovie;
         $scope.deleteMovie = deleteMovie;
         $scope.gridOptions = {};
         $scope.gridOptions.data = [];
@@ -14,10 +12,10 @@
             name: 'name'
         }, {
             name: 'details',
-            cellTemplate: '<button class="btn primary" ng-click="grid.appScope.showMovie()">View Me</button>'
+            cellTemplate: '<button class="btn primary" ui-sref="details({id:row.entity.id})"">View Me</button>'
         }, {
             name: 'edit',
-            cellTemplate: '<button class="btn primary" ng-click="grid.appScope.editMovie()">Edit Me</button>'
+            cellTemplate: '<button class="btn primary" ui-sref="edit({id:row.entity.id})">Edit Me</button>'
         }, {
             name: 'delete',
             cellTemplate: '<button class="btn primary" ng-click="grid.appScope.deleteMovie(row)">Delete Me</button>'
@@ -63,14 +61,6 @@
                 var index = $scope.gridOptions.data.indexOf(row.entity);
                 $scope.gridOptions.data.splice(index, 1);
             });
-        }
-
-        function showMovie() {
-            alert('showMovie');
-        }
-
-        function editMovie() {
-            alert('editMovie!');
         }
 
     }]);
