@@ -28,9 +28,10 @@
       })
     });
 
-    $scope.$watch('filterValue', function () {
-      $scope.gridApi.grid.refresh();
-    });
+    $scope.$watch('filterValue', refreshGrid);
+  }
+    function refreshGrid () {
+    $scope.gridApi.grid.refresh();
   }
 
   function onRegisterApi(gridApi) {
@@ -50,8 +51,10 @@
 
   function deleteMovie (row) {
     console.log("delete Movie ",row);
-    // Movies.delete(row.entity._id);
-    row.entity.$delete();
+    row.entity.$delete(null, function(){
+      var index = $scope.gridOptions.data.indexOf(row.entity);
+      $scope.gridOptions.data.splice(index, 1);
+    });
   }
 
   function showMovie() {
