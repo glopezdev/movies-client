@@ -1,5 +1,4 @@
 (function() {
-    console.log("list.controller");
     var app = angular.module('movieClientAppList', ['ngTouch', 'ui.grid', 'movieClientService']);
     app.controller('ListController', ['$scope', 'Movies', function($scope, Movies) {
 

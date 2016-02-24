@@ -1,5 +1,6 @@
 (function() {
-    var app = angular.module('movieClientApp', ['ui.router', 'movieClientAppList']);
+    var app = angular.module('movieClientApp',
+        ['ui.router', 'movieClientAppList','movieClientAppEdit', 'movieClientAppDetails']);
     app.config(["$stateProvider", "$urlRouterProvider",
         function($stateProvider, $urlRouterProvider) {
 
@@ -9,11 +10,15 @@
                 .state('list', {
                     url: "/list",
                     templateUrl: "list/list.html",
-                    //    controller: "ListController" this gives loads the controller 2 times and gives an error
+                    //    controller: "ListController" this loads the controller 2 times and gives an error
                 })
                 .state('edit', {
-                    url: "/edit",
+                    url: "/edit/:id",
                     templateUrl: "edit/edit.html"
+                })
+                .state('details', {
+                    url: "/details/:id",
+                    templateUrl: "details/details.html"
                 })
         }
     ]);

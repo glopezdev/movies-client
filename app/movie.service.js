@@ -4,6 +4,9 @@
         return $resource('http://localhost:3000/api/movies/:id/', {
             id: '@_id'
         }, {
+            get: {
+                method: 'GET'
+            },
             update: {
                 method: 'PUT'
             },
