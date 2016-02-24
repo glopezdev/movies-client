@@ -9,9 +9,9 @@
     return init();
 
     function init() {
-      Movies.get({id:$stateParams.id},function(results) {
+      Movies.get({id:$stateParams.id},function(result) {
         console.log("Query", arguments);
-
+        $scope.movie = result;
       });
     }
 
