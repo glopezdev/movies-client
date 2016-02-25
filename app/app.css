@@ -3,6 +3,22 @@
     height: 250px;
 }
 
+body {
+    background-color: #fff;
+    border-top: 5px solid #3399cc;
+}
+
+html {
+    background: #fff;
+}
+
+.edit-form {
+    margin: auto;
+    width: 350px;
+    padding: 15px;
+}
+
+
 #ui-grid-twbs #ui-grid-twbs .form-horizontal .form-group:before,
 #ui-grid-twbs #ui-grid-twbs .form-horizontal .form-group:after,
 #ui-grid-twbs #ui-grid-twbs .btn-toolbar:before,
