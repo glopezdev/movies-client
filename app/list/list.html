@@ -1,5 +1,8 @@
-<div ng-controller="ListController as list">
-    Filter: <input ng-model='filterValue'/>
+<div ng-controller="ListController as list" class="list-view">
+    <div class="filter-wrapper">
+        <div class="col-xs-2 col-sm-2 col-md-2">Filter:</div>
+        <input class="col-xs-10 col-sm-10 col-md-10" ng-model='filterValue'/>
+    </div>
     <!--for some reason list.gridOptions wasn't working-->
     <div ui-grid="gridOptions" class="grid"></div>
 </div>
