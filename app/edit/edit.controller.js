@@ -1,9 +1,13 @@
 (function(){
   var app = angular.module('movieClientAppEdit', ['movieClientService']);
-  app.controller('EditController', ['$scope', '$stateParams', 'Movies', function($scope, $stateParams, Movies) {
+  app.controller('EditController', ['$scope', '$stateParams', 'Movies', '$state', function($scope, $stateParams, Movies, $state) {
     console.log("edit controller",$stateParams);
     $scope.movie = {
       id: $stateParams.id
+    };
+    $scope.submit = function() {
+      $scope.movie.$update();
+      $state.go('list');
     };
 
     return init();

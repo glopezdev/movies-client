@@ -1,17 +1,45 @@
-<form ng-controller="EditController" class="form-group edit-form">
+<form novalidate ng-submit="submit()" ng-controller="EditController" class="form-group edit-form" name="edit_form">
     <fieldset>
         <h2>Edit</h2><br>
         <div class="form-group">
             <label for="nameInput">Name</label>
-            <input type="text" class="form-control" id="nameInput">
+            <input type="text" class="form-control" id="nameInput"
+                   name="name"
+                   ng-model="movie.name"
+                   ng-minlength="3"
+                   ng-maxlength="50"
+                   required>
+          <div class="error"
+               ng-show="edit_form.name.$dirty && edit_form.name.$invalid">
+            <small class="error"
+                   ng-show="edit_form.name.$error.required">
+              Movie name is required.
+            </small>
+            <small class="error"
+                   ng-show="edit_form.name.$error.minlength">
+              Movie name is required to be at least 3 characters
+            </small>
+            <small class="error"
+                   ng-show="edit_form.name.$error.name">
+              That is not a valid name. Please input a valid name.
+            </small>
+            <small class="error"
+                   ng-show="edit_form.name.$error.maxlength">
+              Movie name cannot be longer than 50 characters
+            </small>
+          </div>
         </div>
         <div class="form-group">
             <label for="yearInput">Year</label>
-            <input type="text" class="form-control" id="yearInput">
+            <input type="text" class="form-control" id="yearInput"
+                   ng-model="movie.year"
+                   ng-pattern="/^(19|20)\d{2}$/"
+            >
+            
         </div>
         <div class="form-group">
             <label for="genderInput">Gender</label>
-            <input type="text" class="form-control" id="genderInput">
+            <input type="text" class="form-control" id="genderInput" ng-model="movie.gender">
         </div>
         <button type="submit" class="button radius">Submit</button>
     </fieldset>
