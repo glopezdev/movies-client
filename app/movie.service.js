@@ -1,8 +1,7 @@
 (function() {
-  var app = angular.module('movieClientService', ['ngResource']);
-  app.constant('apiUrl', 'http://localhost:3000');
+  var app = angular.module('movieClientService', ['ngResource', 'app.config']);
 
-    app.factory('Movies', ['$resource', 'apiUrl', function($resource, apiUrl) {
+    app.factory('Movies', ['$resource', 'API_URL', function($resource, apiUrl) {
         return $resource(apiUrl+'/api/movies/:id/', {
             id: '@_id'
         }, {

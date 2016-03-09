@@ -5,10 +5,7 @@
     $scope.movie = {
       id: $stateParams.id
     };
-    $scope.submit = function() {
-      $scope.movie.$update();
-      $state.go('list');
-    };
+    $scope.submit = formSubmit;
 
     return init();
 
@@ -17,6 +14,13 @@
         console.log("Query", arguments);
         $scope.movie = result;
       });
+    }
+
+    function formSubmit() {
+      return function () {
+        $scope.movie.$update();
+        $state.go('list');
+      };
     }
 
   }]);
