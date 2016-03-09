@@ -1005,3 +1005,17 @@ fieldset[disabled] .ui-grid-menu .ui-grid-menu-inner .ui-grid-menu-close-button.
     A set of useful LESS mixins
     More info at: http://lesselements.com
   ---------------------------------------------------*/
+
+
+
+.row {
+    border: 0px solid green;
+}
+
+input.ng-invalid {
+    border: 1px solid red;
+}
+
+input.ng-valid {
+    border: 1px solid green;
+}
