@@ -13,14 +13,23 @@
       Movies.get({id:$stateParams.id},function(result) {
         console.log("Query", arguments);
         $scope.movie = result;
+      },
+      function() {
+        console.log("fetch error ",arguments);
+        alert("Something went wrong fetching movie: "+$stateParams.id)
       });
     }
 
     function formSubmit() {
-      return function () {
-        $scope.movie.$update();
-        $state.go('list');
-      };
+      $scope.movie.$update(
+        function() {
+          $state.go('list');
+        },
+        function() {
+          console.log("update error ",arguments);
+          alert("Something went wrong updating movie: "+$stateParams.id)
+        }
+      );
     }
 
   }]);
