@@ -1,7 +1,10 @@
 <div ng-controller="DetailsController" class="details-view">
-    Details<br>
-    Name: {{movie.name}}<br>
-    Id: {{movie._id}}<br>
-    Year: {{movie.year}}<br>
-    Gender: {{movie.gender}}
+    <div
+        Details<br>
+        Name: {{movie.name}}<br>
+        Id: {{movie._id}}<br>
+        Year: {{movie.year}}<br>
+        Gender: {{movie.gender}}<br>
+    </div>
+    <button class="btn primary" ui-sref="edit({id:movie._id})">Edit Me</button>
 </div>

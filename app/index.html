@@ -9,6 +9,8 @@
     <script src="../bower_components/angular-resource/angular-resource.js"></script>
     <script src="../node_modules/angular-ui-grid/ui-grid.js"></script>
     <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="../bower_components/angular-animate/angular-animate.min.js"></script>
+
     <script src="movie.service.js"></script>
     <script src="details/details.controller.js"></script>
     <script src="list/list.controller.js"></script>
@@ -20,8 +22,9 @@
 </head>
 <body ng-app="movieClientApp">
 
-
-<div ui-view></div>
+    <div class="ui-view-container">
+        <div ui-view></div>
+    </div>
 
 </body>
 </html>
